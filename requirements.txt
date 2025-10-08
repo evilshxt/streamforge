@@ -1,0 +1,34 @@
+# Core Dependencies
+opencv-python>=4.7.0
+numpy>=1.24.0
+pyvirtualcam>=0.10.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
+colorama>=0.4.6  # For terminal text styling
+
+# Desktop GUI
+PyQt6>=6.4.0
+qtawesome>=1.4.0  # Downgraded for Python 3.13 compatibility
+
+# Web Interface
+flask>=2.3.0
+gevent>=22.10.0  # Production WSGI server
+
+# Utilities
+python-dotenv>=1.0.0  # For environment variables
+loguru>=0.7.0  # Better logging
+
+# Development Tools
+pytest>=7.3.1
+black>=23.3.0
+flake8>=6.0.0
+mypy>=1.3.0
+
+# Optional Dependencies (uncomment if needed)
+# pydub>=0.25.1  # For additional audio format support
+# ffmpeg-python>=0.2.0  # For advanced video processing
+# keyboard>=0.13.5  # For global hotkeys
+
+# Platform-specific
+# Note: On Windows, install VB-Audio Virtual Cable manually from:
+# https://vb-audio.com/Cable/
