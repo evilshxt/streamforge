@@ -1,68 +1,106 @@
-# StreamForge: Hybrid Virtual Webcam + Microphone
+# 🎥 StreamForge: Standalone Virtual Webcam & Microphone
 
-A Python-based multimedia routing tool that creates virtual webcam and microphone feeds on Windows. StreamForge supports both desktop and web interfaces for flexible control over your streaming setup.
+A Python-based solution that creates native virtual webcam and microphone devices on Windows without requiring OBS or other third-party virtual camera software.
 
-## Features
+## 🚀 Features
 
-- **Virtual Webcam**: Stream video files or live camera to any application
-- **Virtual Microphone**: Route audio through a virtual microphone device
-- **Dual Interface**: Choose between desktop (PyQt6) or web (Flask) control panels
-- **File Management**: Open individual files or entire folders of media
-- **Playback Controls**: Play, pause, skip, loop, and shuffle media
-- **Error Handling**: Graceful handling of unsupported formats and errors
+- **Native Virtual Devices**: Creates system-level virtual webcam and microphone
+- **No OBS Required**: Works independently without OBS or other virtual camera software
+- **Flexible Inputs**: Supports video files, screen capture, and live camera feeds
+- **Audio Routing**: Seamless audio integration with VB-Cable
+- **Modern UI**: Clean, responsive interface with dark/light themes
+- **Cross-Platform Ready**: Designed with Windows in mind, but built for extensibility
 
-## Architecture
+## 🛠️ Architecture
 
 ```
 main.py
-└── StreamForge Launcher
+└── Application Launcher
      ├── Desktop Mode → desktop/app_desktop.py (PyQt6)
      └── Web Mode → web/app_web.py (Flask)
 core/
 └── virtual_av.py
-    ├── OpenCV + pyvirtualcam (video)
-    └── sounddevice + soundfile (audio)
+    ├── DirectShow Virtual Device (video)
+    └── VB-Cable Integration (audio)
 ```
 
-## Installation
+## 🚀 Getting Started
 
-1. Clone the repository:
+### Prerequisites
+
+- Windows 10/11 (64-bit)
+- Python 3.8 or higher
+- VB-Audio Virtual Cable (for audio routing)
+- Administrator privileges (for device installation)
+
+### Installation
+
+1. **Install VB-Audio Virtual Cable**
+   - Download from [vb-audio.com/Cable](https://vb-audio.com/Cable/)
+   - Run the installer and follow the prompts
+   - No additional configuration needed
+
+2. **Set up Python environment**
    ```bash
+   # Clone the repository
    git clone https://github.com/evilshxt/streamforge.git
    cd streamforge
-   ```
-
-2. Install dependencies:
-   ```bash
+   
+   # Install dependencies
    pip install -r requirements.txt
    ```
 
-3. Install VB-Audio Virtual Cable from [vb-audio.com/Cable](https://vb-audio.com/Cable/)
-   - Use **CABLE Input** for StreamForge audio output
-   - Select **CABLE Output** as microphone in your applications
+3. **Run the application**
+   ```bash
+   # Desktop mode (recommended)
+   python main.py --desktop
+   
+   # Or run as administrator for first-time setup
+   # Right-click Command Prompt/PowerShell and select "Run as administrator"
+   # Then run the application
+   ```
 
-## Usage
+## 💡 Usage
 
-### Desktop Mode
-```bash
-python main.py --desktop
-```
+### Adding Media
+1. Click "Add Media" or drag-and-drop files into the application
+2. Select video and/or audio files
+3. Use the playback controls to manage your stream
 
-### Web Mode
-```bash
-python main.py --web
-# Then open http://localhost:5000 in your browser
-```
+### Virtual Device Setup
+1. In your video conferencing app (Zoom, Teams, etc.):
+   - Select "StreamForge Webcam" as your camera
+   - Select "CABLE Output" as your microphone
 
-## Tech Stack
+## 🛠️ Troubleshooting
 
-- **Core**: Python, OpenCV, pyvirtualcam, sounddevice, soundfile
-- **Desktop**: PyQt6, QtAwesome
-- **Web**: Flask, HTML/CSS/JavaScript
-- **Audio**: VB-Audio Virtual Cable
+### Common Issues
 
-## Contributing
+- **Virtual camera not showing up**
+  - Run the application as Administrator
+  - Ensure no other virtual camera software is running
+  - Check Windows Device Manager for any driver issues
 
-Contributions are welcome! Please follow these steps:
+- **Audio not working**
+  - Verify VB-Cable is installed correctly
+  - Set "CABLE Output" as your default microphone in Windows settings
+  - Check application-specific audio settings
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- VB-Audio for their excellent virtual audio cable software
+- The OpenCV and PyQt communities for their amazing tools

@@ -1,51 +1,30 @@
 # 🧩 StreamForge — Developer Documentation
 
 ## 📘 Project Context
-StreamForge is a Windows-based hybrid multimedia project that functions as a virtual webcam and microphone, enabling streaming of pre-selected videos and audio into system-level devices. It's designed to be used with applications like Zoom, Meet, and OBS.
+StreamForge is a native Windows virtual camera and microphone solution that creates system-level virtual devices without requiring OBS or other third-party virtual camera software. It's designed to be a standalone solution for streaming media to any application that supports webcams or microphones.
 
-### Project Goals
-- **System-Level Engineering**: Demonstrates hardware/driver-level understanding
-- **Full-Stack Showcase**: Features both desktop and web interfaces
-- **Modular Architecture**: Clean separation of concerns between components
+### 🎯 Project Goals
+- **Native Device Creation**: Implement virtual devices at the system level
+- **Zero Dependencies**: No requirement for OBS or other virtual camera software
+- **Extensible Architecture**: Easy to add new features and integrations
+- **Cross-Platform Ready**: Core architecture designed for future cross-platform support
 
 ## 🏗️ Architecture Overview
 
 ```
 main.py
-└── Launcher (PyQt6 choice dialog)
-      ├── Desktop Mode → desktop/app_desktop.py
-      │                 └─ PyQt6 + QSS + QtAwesome GUI
-      └── Web Mode → web/app_web.py
+└── Application Launcher
+     ├── Desktop Mode → desktop/app_desktop.py
+     │                 └─ PyQt6 + QSS + QtAwesome GUI
+     └── Web Mode → web/app_web.py
                          └─ Flask + HTML/CSS/JS frontend
 core/
-└── virtual_av.py → shared backend engine
-       ├─ Video: OpenCV + pyvirtualcam
-       ├─ Audio: sounddevice + soundfile
-       ├─ Queue & Playback Management
-       └─ Thread-safe sync & validation
+└── virtual_av.py
+    ├── Video Pipeline: DirectShow Virtual Device
+    └── Audio Pipeline: VB-Cable Integration
 ```
 
-## 🛠️ Core Components
-
-### 1. Backend Engine (`core/virtual_av.py`)
-- **API Endpoints**:
-  ```python
-  load_files(paths: list[str])
-  start_video_feed()
-  start_audio_feed()
-  pause()
-  resume()
-  next()
-  previous()
-  stop()
-  ```
-- **Thread Management**: Ensures non-blocking UI operations
-- **Error Handling**: Graceful degradation on unsupported formats
-
-### 2. Desktop Interface (`desktop/`)
-- **Framework**: PyQt6 with QtAwesome icons
-- **Features**:
-  - Video preview panel
+## 🛠️ Development Setup
   - Interactive playlist
   - Styled controls with QSS
   - Status indicators
